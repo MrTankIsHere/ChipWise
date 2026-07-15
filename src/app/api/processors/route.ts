@@ -4,6 +4,6 @@ import Processor from "@/lib/models/processor.model";
 
 export async function GET() {
     await connectDB();
-    const processors = await Processor.find({}).limit(50);
+    const processors = await Processor.find({});
     return NextResponse.json(processors);
 }
