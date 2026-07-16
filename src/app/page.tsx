@@ -7,6 +7,7 @@ export default function Home_Page() {
             <div className="my-17 flex gap-7">
                 <Link href={`/processors`} className="text-xl font-bold hover:text-gray-700">Processors</Link>
                 <Link href={`/laptops`} className="text-xl font-bold hover:text-gray-700">Laptops</Link>
+                <Link href={`/wizard`} className="text-xl font-bold hover:text-gray-700">Wizard</Link>
             </div>
         </div>
     )
