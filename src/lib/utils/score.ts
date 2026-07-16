@@ -1,18 +1,30 @@
-import { parseNpuTops } from "./parse";
+import { parseNpuTops, parseCoresThreads } from "./parse";
 
-// Rough, temporary heuristic scores (0-10) — refined properly in Goal 9
+function clamp(n: number, min = 0, max = 10) {
+    return Math.max(min, Math.min(max, n));
+}
+
+function gpuTierScore(p: any) {
+    if (p.gpuCompatibility?.includes("High-end")) return 9;
+    if (p.gpuCompatibility?.includes("Mid dGPU")) return 6;
+    return 3;
+}
+
+function recencyScore(p: any) {
+    const year = parseInt(p.launch?.match(/\d{4}/)?.[0]) || 2022;
+    return clamp((year - 2021) * 1.6);
+}
+
 export function computeScores(p: any) {
     const maxW = parseInt(p.maxPower) || 0;
     const npu = parseNpuTops(p.npuTops);
-    const isHX = p.gpuCompatibility?.includes("High-end");
-    const isH = p.gpuCompatibility?.includes("Mid dGPU");
+    const { threads } = parseCoresThreads(p.coresThreads);
+    const tier = gpuTierScore(p);
 
-    return {
-            gaming: isHX ? 9 : isH ? 6.5 : 3,
-            battery: maxW > 0 ? Math.max(1, 10 - maxW / 20) : 5,
-            programming: 7, // placeholder — most modern chips are fine for this
-            creator: npu > 0 ? Math.min(10, 5 + npu / 10) : 4,
-            linux: p.brand === "Intel" ? 8 : 7, // rough placeholder
-            futureProof: npu >= 40 ? 9 : npu > 0 ? 6 : 4,
-    };
+    const battery = maxW > 0 ? clamp(10 - maxW / 20) : 5;
+    const programming = threads > 0 ? clamp((threads - 4) / 2) : clamp(tier);
+    const creator = clamp(programming * 0.5 + tier * 0.3 + (npu > 0 ? npu / 10 : 0) * 0.2 * 10);
+    const futureProof = clamp((npu > 0 ? clamp(npu / 6) : 3) * 0.5 + recencyScore(p) * 0.5);
+
+    return { gaming: tier, battery, programming, creator, linux: p.brand === "Intel" ? 8 : 7, futureProof };
 }
