@@ -8,6 +8,7 @@ export default function Home_Page() {
                 <Link href={`/processors`} className="text-xl font-bold hover:text-gray-700">Processors</Link>
                 <Link href={`/laptops`} className="text-xl font-bold hover:text-gray-700">Laptops</Link>
                 <Link href={`/wizard`} className="text-xl font-bold hover:text-gray-700">Wizard</Link>
+                <Link href={`/advisor`} className="text-xl font-bold hover:text-gray-700">Advisor</Link>
             </div>
         </div>
     )
