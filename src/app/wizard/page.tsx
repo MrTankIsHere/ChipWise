@@ -35,6 +35,8 @@ export default function WizardPage() {
             <Slider label="Editing/Creator priority" field="editing" />
             <Slider label="Office work priority" field="office" />
             <Slider label="Battery life priority" field="batteryPriority" />
+            <Slider label="Portability priority (lighter/thinner)" field="portability" />
+            <Slider label="Years you plan to use it" field="yearsOfUsage" />
 
             <label className="flex items-center gap-2 mb-6">
                 <input type="checkbox" checked={linuxNeeded} onChange={(e) => set({ linuxNeeded: e.target.checked })} />

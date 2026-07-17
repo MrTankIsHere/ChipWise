@@ -21,7 +21,7 @@ export default function ResultsPage() {
 
     if (results.length === 0) {
         return <div className="p-6">
-                    No matching laptops found — try increasing your budget.
+                    No matching laptops found - try increasing your budget.
                 </div>;
     }
 
@@ -31,7 +31,7 @@ export default function ResultsPage() {
             {results.map((r) => (
                 <Card key={r.laptop.laptopId} className="p-4">
                 <h3 className="font-semibold">{r.laptop.brand} {r.laptop.modelName}</h3>
-                <p className="text-sm text-muted-foreground">Rs {r.laptop.priceINR?.toLocaleString()} — {r.laptop.processor.model}</p>
+                <p className="text-sm text-muted-foreground">Rs {r.laptop.priceINR?.toLocaleString()} - {r.laptop.processor.model}</p>
                 <p className="text-sm mt-2">Why: {r.explanation || "Balanced overall fit for your priorities."}</p>
                 </Card>
             ))}
