@@ -102,7 +102,7 @@ export default function AnalyticsCharts({ data }: { data: any[] }) {
                     cx="50%" cy="50%"
                     innerRadius={50}
                     outerRadius={80}
-                    onClick={(entry) => setSelectedFamily(entry.family)}
+                    onClick={(entry: any) => setSelectedFamily(entry.family)}
                     >
                     {familyData.map((entry, i) => (
                         <Cell
