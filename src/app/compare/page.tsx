@@ -1,9 +1,12 @@
 import ScoreRadar from "@/components/scoreRadar";
 import { computeScores } from "@/lib/utils/score";
+import { connectDB } from "@/lib/db/db";
+import Processor from "@/lib/models/processor.model";
 
 async function getProcessor(id: string) {
-    const res = await fetch(`/api/processors/${id}`, { cache: "no-store" });
-    return res.ok ? res.json() : null;
+    await connectDB();
+    const p = await Processor.findOne({ processorId: id }).lean();
+    return p ? JSON.parse(JSON.stringify(p)) : null;
 }
 
 export default async function ComparePage({ searchParams }: { searchParams: Promise<{ ids?: string }> }) {

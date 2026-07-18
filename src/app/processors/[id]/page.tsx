@@ -1,17 +1,19 @@
 import ScoreRadar from "@/components/scoreRadar";
 import { computeScores } from "@/lib/utils/score";
+import { connectDB } from "@/lib/db/db";
+import Processor from "@/lib/models/processor.model";
 
 async function getProcessor(id: string) {
-    const res = await fetch(`/api/processors/${id}`, { cache: "no-store" });
-    if (!res.ok) return null;
-    return res.json();
+    await connectDB();
+    const processor = await Processor.findOne({ processorId: id }).lean();
+    if (!processor) return null;
+    return JSON.parse(JSON.stringify(processor));
 }
 
 export default async function ProcessorDetailPage({ params }: { params: Promise<{ id: string }> }) {
     const { id } = await params;
     const p = await getProcessor(id);
     if (!p) return <div className="p-6">Processor not found.</div>;
-
 
     const scores = computeScores(p);
     const chartData = [

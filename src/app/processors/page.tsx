@@ -2,10 +2,13 @@ import ProcessorTable from "@/components/processorTable";
 import ProcessorFilters from "@/components/processorFilters";
 import { parsePriceRange, parseNpuTops } from "@/lib/utils/parse";
 import ComparisonPicker from "@/components/comparisonPicker";
+import { connectDB } from "@/lib/db/db";
+import Processor from "@/lib/models/processor.model";
 
 async function getProcessors() {
-    const res = await fetch("/api/processors", { cache: "no-store" });
-    return res.json();
+    await connectDB();
+    const processors = await Processor.find({}).lean();
+    return JSON.parse(JSON.stringify(processors));
 }
 
 export default async function ProcessorsPage() {

@@ -1,8 +1,11 @@
 import AnalyticsCharts from "@/components/analyticsCharts";
+import { connectDB } from "@/lib/db/db";
+import Processor from "@/lib/models/processor.model";
 
 async function getData() {
-    const res = await fetch("/api/processors", { cache: "no-store" });
-    return res.json();
+    await connectDB();
+    const processors = await Processor.find({}).lean();
+    return JSON.parse(JSON.stringify(processors));
 }
 
 export default async function AnalyticsPage() {

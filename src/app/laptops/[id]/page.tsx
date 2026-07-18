@@ -6,9 +6,12 @@ export default async function LaptopDetailPage({ params }: { params: Promise<{ i
 
     const { id } = await params;
     await connectDB();
-    const laptop = await Laptop.findOne({ laptopId: id }).lean();
-    if (!laptop) return <div className="p-6">Laptop not found.</div>;
-    const processor = await Processor.findOne({ processorId: laptop.processorId }).lean();
+    const laptopDoc = await Laptop.findOne({ laptopId: id }).lean();
+    if (!laptopDoc) return <div className="p-6">Laptop not found.</div>;
+    const laptop = JSON.parse(JSON.stringify(laptopDoc));
+
+    const processorDoc = await Processor.findOne({ processorId: laptop.processorId }).lean();
+    const processor = processorDoc ? JSON.parse(JSON.stringify(processorDoc)) : null;
 
     return (
         <div className="p-6 max-w-2xl mx-auto">

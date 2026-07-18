@@ -1,16 +1,18 @@
 import LaptopTable from "@/components/laptopTable";
+import { connectDB } from "@/lib/db/db";
+import Laptop from "@/lib/models/laptop.model";
+import Processor from "@/lib/models/processor.model";
 
 async function getData() {
-
-    const [laptopsRes, processorsRes] = await Promise.all([
-        fetch("/api/laptops", { cache: "no-store" }),
-        fetch("/api/processors", { cache: "no-store" }),
-    ]);
-    const laptops = await laptopsRes.json();
-    const processors = await processorsRes.json();
-    const procMap = Object.fromEntries(processors.map((p: any) => [p.processorId, p]));
-    return laptops.map((l: any) => ({ ...l, processor: procMap[l.processorId] }));
-
+    await connectDB();
+    const laptops = await Laptop.find({}).lean();
+    const processors = await Processor.find({}).lean();
+    const procMap: Record<string, any> = {};
+    for (let i = 0; i < processors.length; i++) {
+        procMap[processors[i].processorId] = processors[i];
+    }
+    const joined = laptops.map((l: any) => ({ ...l, processor: procMap[l.processorId] }));
+    return JSON.parse(JSON.stringify(joined));
 }
 
 export default async function LaptopsPage() {
