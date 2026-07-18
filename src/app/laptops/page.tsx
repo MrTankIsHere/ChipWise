@@ -3,8 +3,8 @@ import LaptopTable from "@/components/laptopTable";
 async function getData() {
 
     const [laptopsRes, processorsRes] = await Promise.all([
-        fetch("http://localhost:3000/api/laptops", { cache: "no-store" }),
-        fetch("http://localhost:3000/api/processors", { cache: "no-store" }),
+        fetch("/api/laptops", { cache: "no-store" }),
+        fetch("/api/processors", { cache: "no-store" }),
     ]);
     const laptops = await laptopsRes.json();
     const processors = await processorsRes.json();

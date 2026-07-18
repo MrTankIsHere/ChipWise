@@ -1,7 +1,7 @@
 import AnalyticsCharts from "@/components/analyticsCharts";
 
 async function getData() {
-    const res = await fetch("http://localhost:3000/api/processors", { cache: "no-store" });
+    const res = await fetch("/api/processors", { cache: "no-store" });
     return res.json();
 }
 
