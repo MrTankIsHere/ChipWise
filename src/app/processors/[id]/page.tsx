@@ -2,7 +2,7 @@ import ScoreRadar from "@/components/scoreRadar";
 import { computeScores } from "@/lib/utils/score";
 
 async function getProcessor(id: string) {
-    const res = await fetch(`http://localhost:3000/api/processors/${id}`, { cache: "no-store" });
+    const res = await fetch(`/api/processors/${id}`, { cache: "no-store" });
     if (!res.ok) return null;
     return res.json();
 }
