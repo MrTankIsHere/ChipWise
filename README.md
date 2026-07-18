@@ -1,36 +1,88 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ChipWise
 
-## Getting Started
+Intel and AMD processor + laptop recommendation dashboard. Built to centralize real processor data and help people (students, devs, gamers, AI folks, Linux users) actually pick the right laptop instead of guessing.
 
-First, run the development server:
+## What it does
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- Browse and filter 137 Intel + AMD mobile processors, with real specs (cores, threads, TDP, NPU, iGPU)
+- Browse laptops linked to their actual processor data
+- Compare 2 to 4 processors side by side with radar charts
+- A recommendation wizard that asks about your budget, gaming, programming, AI/ML, battery, portability etc, and gives you ranked laptop suggestions with reasons, no AI needed for this part
+- An AI advisor you can chat with in plain English, it only answers using real data from the database, not made up specs
+- An analytics page with charts (brand split, family breakdown, NPU stats, TOPS trend by year)
+
+## Tech stack
+
+- Next.js (App Router) + TypeScript + Tailwind
+- shadcn/ui for components
+- MongoDB Atlas + Mongoose
+- Zustand for state (filters, wizard)
+- TanStack Table for the data tables
+- Recharts for charts
+- Groq (llama-3.3-70b) for the AI advisor, free and fast
+
+## Project structure
+
+```
+chipwise/
+├── scripts/
+│   ├── seed.mjs            # loads processors csv into mongodb
+│   └── seedLaptops.mjs     # loads laptops csv into mongodb
+├── src/
+│   ├── app/
+│   │   ├── api/            # processors, laptops, advisor routes
+│   │   ├── processors/     # explorer + detail page
+│   │   ├── laptops/        # explorer + detail page
+│   │   ├── compare/        # side by side comparison
+│   │   ├── wizard/         # recommendation form + results
+│   │   ├── advisor/        # ai chat
+│   │   └── analytics/      # charts
+│   ├── components/
+│   │   └── ui/             # shadcn components
+│   ├── data/                # seed csvs
+│   └── lib/
+│       ├── db/              # mongodb connection
+│       ├── models/          # processor + laptop schemas
+│       ├── store/           # zustand stores (filters, wizard)
+│       └── utils/           # scoring, parsing helpers
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Getting started
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Clone the repo and install stuff
+```bash
+npm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. Add a `.env.local` file in the root with:
+```
+MONGO_URI=your_mongodb_atlas_connection_string
+GROQ_API_KEY=your_groq_api_key
+```
 
-## Learn More
+3. Seed the database (only need to do this once, safe to rerun anytime)
+```bash
+npm run seed
+npm run seed:laptops
+```
 
-To learn more about Next.js, take a look at the following resources:
+4. Run it
+```bash
+npm run dev
+```
+Then go to `localhost:3000`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Notes on the data
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Processor prices are researched typical laptop price bands in India for that chip tier, not official per chip pricing since Intel/AMD don't sell chips directly to consumers
+- GPU compatibility column is a rough recommendation based on the chip's power class, not an official spec
+- Some newer families (Arrow Lake, Panther Lake, Core Ultra Series 3, Ryzen AI 400, Ryzen AI Max+) still have placeholder core/thread data since research on them wasn't complete yet
+- Scoring (gaming, programming, creator, battery, linux, future proof) is a rule based formula built from real specs, not hardcoded per chip
 
-## Deploy on Vercel
+## Roadmap
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Full build log and what's left to do lives in `ChipWise_Project_State.md`. Short version: all 7 phases (setup, data layer, explorer + comparison, laptop explorer, recommendation wizard, ai advisor, analytics) are done. Deploy is the last step.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## License
+
+Open source, do whatever you want with it.
