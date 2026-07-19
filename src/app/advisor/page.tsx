@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default function AdvisorPage() {
     const [question, setQuestion] = useState("");
@@ -35,7 +36,16 @@ export default function AdvisorPage() {
                     <div className="inline-block bg-muted rounded p-2 text-sm max-w-[80%]">{m.text}</div>
                 </div>
                 ))}
-                {loading && <div className="text-sm text-muted-foreground">Thinking...</div>}
+
+                {loading && (
+                    <div className="text-left">
+                        <div className="inline-block bg-muted rounded p-2 max-w-[80%] space-y-1">
+                            <Skeleton className="h-3 w-40" />
+                            <Skeleton className="h-3 w-32" />
+                            <Skeleton className="h-3 w-24" />
+                        </div>
+                    </div>
+                )}
             </div>
 
             <div className="flex gap-2">
