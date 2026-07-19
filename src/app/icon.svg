@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="260"
+   height="260"
+   viewBox="0 0 260 260"
+   version="1.1"
+   id="svg11"
+   sodipodi:docname="chipwise_logo.svg"
+   inkscape:version="1.4.4 (dcaf3e7d9e, 2026-05-05)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview11"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="3"
+     inkscape:cx="121.66667"
+     inkscape:cy="145.16667"
+     inkscape:window-width="1868"
+     inkscape:window-height="986"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg11" />
+  <title
+     id="title1">ChipWise</title>
+  <defs
+     id="defs6">
+    <linearGradient
+       id="g"
+       x1="30"
+       y1="30"
+       x2="230"
+       y2="230"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         offset="0%"
+         stop-color="#00925A"
+         id="stop1" />
+      <stop
+         offset="55%"
+         stop-color="#007342"
+         id="stop2" />
+      <stop
+         offset="100%"
+         stop-color="#060B0A"
+         id="stop3" />
+    </linearGradient>
+    <radialGradient
+       id="h"
+       cx="35%"
+       cy="25%"
+       r="60%">
+      <stop
+         offset="0%"
+         stop-color="#ffffff"
+         stop-opacity="0.16"
+         id="stop4" />
+      <stop
+         offset="100%"
+         stop-color="#ffffff"
+         stop-opacity="0"
+         id="stop5" />
+    </radialGradient>
+    <filter
+       id="glow"
+       x="-2.6583"
+       y="-2.575"
+       width="6.3166"
+       height="6.15">
+      <feGaussianBlur
+         stdDeviation="26.583 25.75"
+         result="b"
+         id="feGaussianBlur5" />
+      <feMerge
+         id="feMerge6">
+        <feMergeNode
+           in="b"
+           id="feMergeNode5" />
+        <feMergeNode
+           in="SourceGraphic"
+           id="feMergeNode6" />
+      </feMerge>
+    </filter>
+  </defs>
+  <!-- chip package -->
+  <rect
+     x="30"
+     y="30"
+     width="200"
+     height="200"
+     rx="32"
+     fill="url(#g)"
+     id="rect6" />
+  <rect
+     x="30"
+     y="30"
+     width="200"
+     height="200"
+     rx="32"
+     fill="url(#h)"
+     id="rect7" />
+  <!-- pin-1 orientation dot, like on a real CPU package -->
+  <ellipse
+     fill="#b0fcce"
+     opacity="0.9"
+     id="circle7"
+     cy="54"
+     cx="54.333336"
+     rx="12.333333"
+     ry="12" />
+  <ellipse
+     fill="#b0fcce"
+     opacity="0.9"
+     id="circle7-5"
+     cy="205.33333"
+     cx="206"
+     rx="12.333333"
+     ry="12" />
+  <!-- die outline, etched into the package surface -->
+  <rect
+     x="54"
+     y="54"
+     width="152"
+     height="152"
+     rx="14"
+     fill="none"
+     stroke="#B0FCCE"
+     stroke-opacity="0.35"
+     stroke-width="1.5"
+     id="rect8" />
+  <!-- corner fiducial traces -->
+  <polyline
+     points="54,74 54,54 74,54"
+     fill="none"
+     stroke="#B0FCCE"
+     stroke-opacity="0.55"
+     stroke-width="2"
+     id="polyline8" />
+  <polyline
+     points="186,54 206,54 206,74"
+     fill="none"
+     stroke="#B0FCCE"
+     stroke-opacity="0.55"
+     stroke-width="2"
+     id="polyline9" />
+  <polyline
+     points="54,186 54,206 74,206"
+     fill="none"
+     stroke="#B0FCCE"
+     stroke-opacity="0.55"
+     stroke-width="2"
+     id="polyline10" />
+  <polyline
+     points="186,206 206,206 206,186"
+     fill="none"
+     stroke="#B0FCCE"
+     stroke-opacity="0.55"
+     stroke-width="2"
+     id="polyline11" />
+  <!-- circuit "C" core -->
+  <path
+     d="M172.1,165.3 A55,55 0 1 1 172.1,94.7"
+     fill="none"
+     stroke="#F4FFFA"
+     stroke-width="15"
+     stroke-linecap="round"
+     id="path11" />
+  <!-- glowing signal node -->
+  <circle
+     cx="130.09999"
+     cy="129.03333"
+     r="12"
+     fill="#2bfff8"
+     filter="url(#glow)"
+     id="circle11" />
+</svg>
