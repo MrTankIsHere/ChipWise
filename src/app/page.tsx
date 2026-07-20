@@ -25,39 +25,42 @@ export default async function HomePage() {
     const stats = await getStats();
 
     return (
-        <>
-        <ScrollVideoHero />
+        <ScrollVideoHero>
+            <div className="max-w-5xl mx-auto px-6 flex flex-col items-center">
 
-            <div className="max-w-4xl mx-auto p-6">
-                <div className="grid grid-cols-3 gap-4 my-16">
-                    <Card className="p-4 text-center">
-                        <div className="text-2xl font-bold">{stats.processorCount}</div>
-                        <div className="text-sm text-muted-foreground">Processors</div>
+                {/* Stats Row - Spaced out like the diagram */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full mb-32">
+                    <Card className="p-8 text-center bg-black/40 backdrop-blur-md border-white/10 text-white shadow-2xl">
+                        <div className="text-4xl font-bold mb-3">{stats.processorCount}</div>
+                        <div className="text-sm font-medium text-white/60 tracking-wider uppercase">Processors</div>
                     </Card>
-                    <Card className="p-4 text-center">
-                        <div className="text-2xl font-bold">{stats.laptopCount}</div>
-                        <div className="text-sm text-muted-foreground">Laptops</div>
+                    <Card className="p-8 text-center bg-black/40 backdrop-blur-md border-white/10 text-white shadow-2xl">
+                        <div className="text-4xl font-bold mb-3">{stats.laptopCount}</div>
+                        <div className="text-sm font-medium text-white/60 tracking-wider uppercase">Laptops</div>
                     </Card>
-                    <Card className="p-4 text-center">
-                        <div className="text-2xl font-bold">{stats.brandCount}</div>
-                        <div className="text-sm text-muted-foreground">Brands</div>
+                    <Card className="p-8 text-center bg-black/40 backdrop-blur-md border-white/10 text-white shadow-2xl">
+                        <div className="text-4xl font-bold mb-3">{stats.brandCount}</div>
+                        <div className="text-sm font-medium text-white/60 tracking-wider uppercase">Brands</div>
                     </Card>
                 </div>
 
-                <h2 className="text-lg font-semibold mb-4">Or explore directly</h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {
-                        modules.map((m) => (
-                            <Link key={m.href} href={m.href}>
-                            <Card className="p-4 hover:bg-muted/50 cursor-pointer">
-                                <h3 className="font-semibold">{m.title}</h3>
-                                <p className="text-sm text-muted-foreground">{m.desc}</p>
-                            </Card>
-                            </Link>
-                        ))
-                    }
+                {/* Modules Grid - 2 Columns, generous padding */}
+                <div className="w-full max-w-4xl">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        {
+                            modules.map( (m) => (
+                                <Link key={m.href} href={m.href} className="block">
+                                    <Card className="h-full p-8 bg-black/40 backdrop-blur-md border-white/10 text-white hover:bg-white/10 transition-all duration-300 cursor-pointer shadow-lg">
+                                        <h3 className="text-xl font-semibold mb-2">{m.title}</h3>
+                                        <p className="text-sm text-white/70 leading-relaxed">{m.desc}</p>
+                                    </Card>
+                                </Link>
+                            ))
+                        }
+                    </div>
                 </div>
+
             </div>
-        </>
+        </ScrollVideoHero>
     );
 }
