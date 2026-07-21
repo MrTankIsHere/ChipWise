@@ -18,7 +18,7 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
     if (processors.length < 2) return <div className="p-6">Select at least 2 processors to compare.</div>;
 
     return (
-        <div className="p-6">
+        <div className="pt-28 px-6 pb-6">
             <h1 className="text-2xl font-bold mb-4">Comparison</h1>
             <div className="overflow-x-auto mb-8">
                 <table className="text-sm border w-full">

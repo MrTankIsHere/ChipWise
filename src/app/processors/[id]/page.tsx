@@ -26,7 +26,7 @@ export default async function ProcessorDetailPage({ params }: { params: Promise<
     ];
 
     return (
-        <div className="p-6 max-w-2xl mx-auto">
+        <div className="pt-28 px-6 pb-6 max-w-2xl mx-auto">
             <h1 className="text-2xl font-bold">{p.model}</h1>
             <p className="text-muted-foreground mb-4">{p.brand} — {p.family}</p>
 

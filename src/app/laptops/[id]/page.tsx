@@ -14,7 +14,7 @@ export default async function LaptopDetailPage({ params }: { params: Promise<{ i
     const processor = processorDoc ? JSON.parse(JSON.stringify(processorDoc)) : null;
 
     return (
-        <div className="p-6 max-w-2xl mx-auto">
+        <div className="pt-28 px-6 pb-6 max-w-2xl mx-auto">
             <h1 className="text-2xl font-bold">{laptop.modelName}</h1>
             <p className="text-muted-foreground mb-4">{laptop.brand} — Rs {laptop.priceINR?.toLocaleString()}</p>
             <div className="grid grid-cols-2 gap-2 text-sm mb-6">
@@ -25,17 +25,19 @@ export default async function LaptopDetailPage({ params }: { params: Promise<{ i
                 <div><b>Battery:</b> {laptop.batteryWh}Wh</div>
                 <div><b>Weight:</b> {laptop.weightKg}kg</div>
             </div>
-            {processor && (
-                <div>
-                    <h2 className="font-semibold mb-2">Processor: {processor.model}</h2>
-                    <div className="grid grid-cols-2 gap-2 text-sm">
-                        <div><b>Series:</b> {processor.series}</div>
-                        <div><b>Power:</b> {processor.basePower} / {processor.maxPower}</div>
-                        <div><b>NPU:</b> {processor.npu} ({processor.npuTops} TOPS)</div>
-                        <div><b>iGPU:</b> {processor.igpu}</div>
+            {
+                processor && (
+                    <div>
+                        <h2 className="font-semibold mb-2">Processor: {processor.model}</h2>
+                        <div className="grid grid-cols-2 gap-2 text-sm">
+                            <div><b>Series:</b> {processor.series}</div>
+                            <div><b>Power:</b> {processor.basePower} / {processor.maxPower}</div>
+                            <div><b>NPU:</b> {processor.npu} ({processor.npuTops} TOPS)</div>
+                            <div><b>iGPU:</b> {processor.igpu}</div>
+                        </div>
                     </div>
-                </div>
-            )}
+                )
+            }
         </div>
     );
 }

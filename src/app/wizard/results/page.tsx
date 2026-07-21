@@ -43,7 +43,7 @@ export default function ResultsPage() {
     if (results.length === 0) return <div className="p-6">No matching laptops found — try increasing your budget.</div>;
 
     return (
-        <div className="p-6 max-w-2xl mx-auto space-y-4">
+        <div className="pt-28 px-6 pb-6 max-w-2xl mx-auto space-y-4">
             <h1 className="text-2xl font-bold mb-4">Top Recommendations</h1>
             {
                 results.map((r) => (

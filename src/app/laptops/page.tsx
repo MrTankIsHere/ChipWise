@@ -20,7 +20,7 @@ export default async function LaptopsPage() {
     const data = await getData();
 
     return (
-        <div className="p-6">
+        <div className="pt-28 px-6 pb-6">
             <h1 className="text-2xl font-bold mb-4">Laptop Explorer</h1>
             <LaptopTable data={data} />
         </div>

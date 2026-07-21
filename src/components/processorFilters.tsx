@@ -22,11 +22,10 @@ export default function ProcessorFilters({ processors, priceBounds, npuBounds }:
         return [...new Set(scoped.map((p) => p.series))];
     }, [processors, brand]);
 
-    // Set initial range values to full dataset bounds, once
+    // Set initial range values to full dataset bounds
     useEffect(() => {
         if (priceMin === 0 && priceMax === 0) setPriceRange(priceBounds[0], priceBounds[1]);
         if (npuMin === 0 && npuMax === 0) setNpuRange(npuBounds[0], npuBounds[1]);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (

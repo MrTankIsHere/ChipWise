@@ -138,14 +138,14 @@ export default function ScrollVideoHero({ children }: { children?: React.ReactNo
                     <p className="text-white/80 text-lg max-w-2xl mb-10">
                         Real processor data, honest scoring, and a recommendation you can actually understand, not a guess.
                     </p>
-                    <div className="flex items-center justify-center gap-6">
+                    <div className="flex items-center justify-center gap-4">
                         <Link href="/wizard">
-                            <button className="bg-white text-black px-8 py-3 rounded-full font-semibold hover:bg-gray-200 transition-colors">
-                                Get Recommendation
+                            <button className="bg-accent text-accent-foreground px-8 py-3 rounded-full font-semibold hover:opacity-90 transition-opacity">
+                                Get My Recommendation
                             </button>
                         </Link>
                         <Link href="/processors">
-                            <button className="border border-white/50 text-white backdrop-blur-sm px-8 py-3 rounded-full font-semibold hover:bg-white/10 transition-colors">
+                            <button className="glass-sm text-foreground px-8 py-3 rounded-full font-semibold hover:opacity-90 transition-opacity">
                                 Just Browse
                             </button>
                         </Link>

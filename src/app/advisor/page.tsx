@@ -27,7 +27,7 @@ export default function AdvisorPage() {
     }
 
     return (
-        <div className="p-6 max-w-xl mx-auto">
+        <div className="pt-28 px-6 pb-6 max-w-xl mx-auto">
             <h1 className="text-2xl font-bold mb-4">AI Advisor</h1>
 
             <div className="space-y-3 mb-4">

@@ -20,7 +20,7 @@ export default async function ProcessorsPage() {
     const npuBounds: [number, number] = [Math.min(...npuVals), Math.max(...npuVals)];
 
     return (
-        <div className="p-6">
+        <div className="pt-28 px-6 pb-6">
             <h1 className="text-2xl font-bold mb-4">Processor Explorer</h1>
             <ProcessorFilters processors={processors} priceBounds={priceBounds} npuBounds={npuBounds} />
             <ComparisonPicker processors={processors} />

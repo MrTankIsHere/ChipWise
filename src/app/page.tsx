@@ -28,35 +28,51 @@ export default async function HomePage() {
         <ScrollVideoHero>
             <div className="max-w-5xl mx-auto px-6 flex flex-col items-center">
 
-                {/* Stats Row - Spaced out like the diagram */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full mb-32">
-                    <Card className="p-8 text-center bg-black/40 backdrop-blur-md border-white/10 text-white shadow-2xl">
-                        <div className="text-4xl font-bold mb-3">{stats.processorCount}</div>
-                        <div className="text-sm font-medium text-white/60 tracking-wider uppercase">Processors</div>
-                    </Card>
-                    <Card className="p-8 text-center bg-black/40 backdrop-blur-md border-white/10 text-white shadow-2xl">
-                        <div className="text-4xl font-bold mb-3">{stats.laptopCount}</div>
-                        <div className="text-sm font-medium text-white/60 tracking-wider uppercase">Laptops</div>
-                    </Card>
-                    <Card className="p-8 text-center bg-black/40 backdrop-blur-md border-white/10 text-white shadow-2xl">
-                        <div className="text-4xl font-bold mb-3">{stats.brandCount}</div>
-                        <div className="text-sm font-medium text-white/60 tracking-wider uppercase">Brands</div>
-                    </Card>
+                {/* Module 1: Stats Row */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full mb-24 relative z-10">
+                    <div className="glass rounded-2xl p-6 text-center shadow-lg hover:-translate-y-1 transition-transform duration-300">
+                        <div className="text-4xl font-bold text-white">{stats.processorCount}</div>
+                        <div className="text-sm text-white/70 tracking-wide uppercase mt-2 font-medium">Processors</div>
+                    </div>
+                    <div className="glass rounded-2xl p-6 text-center shadow-lg hover:-translate-y-1 transition-transform duration-300">
+                        <div className="text-4xl font-bold text-white">{stats.laptopCount}</div>
+                        <div className="text-sm text-white/70 tracking-wide uppercase mt-2 font-medium">Laptops</div>
+                    </div>
+                    <div className="glass rounded-2xl p-6 text-center shadow-lg hover:-translate-y-1 transition-transform duration-300">
+                        <div className="text-4xl font-bold text-white">{stats.brandCount}</div>
+                        <div className="text-sm text-white/70 tracking-wide uppercase mt-2 font-medium">Brands</div>
+                    </div>
                 </div>
 
-                {/* Modules Grid - 2 Columns, generous padding */}
-                <div className="w-full max-w-4xl">
+                {/* Module 2: Links Grid */}
+                <div className="w-full max-w-4xl pb-24 relative z-10">
+                    <h2 className="text-2xl font-semibold mb-8 text-center text-white drop-shadow-md">Or explore directly</h2>
+
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                        {
-                            modules.map( (m) => (
-                                <Link key={m.href} href={m.href} className="block">
-                                    <Card className="h-full p-8 bg-black/40 backdrop-blur-md border-white/10 text-white hover:bg-white/10 transition-all duration-300 cursor-pointer shadow-lg">
-                                        <h3 className="text-xl font-semibold mb-2">{m.title}</h3>
-                                        <p className="text-sm text-white/70 leading-relaxed">{m.desc}</p>
-                                    </Card>
-                                </Link>
-                            ))
-                        }
+                        {modules.map((m) => (
+                            <Link key={m.href} href={m.href} className="block group">
+                                <Card className="relative overflow-hidden glass !bg-transparent p-8 h-full transition-all duration-500 hover:-translate-y-1 hover:border-white/40 cursor-pointer shadow-lg">
+
+                                    {/* Animated Hover Background (Base Gradient) */}
+                                    <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"></div>
+
+                                    {/* Animated Glowing Orbs */}
+                                    <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-accent/40 blur-3xl rounded-full group-hover:scale-[2] group-hover:bg-primary/50 transition-all duration-700 ease-out z-0"></div>
+                                    <div className="absolute -top-10 -left-10 w-32 h-32 bg-secondary/40 blur-3xl rounded-full group-hover:scale-150 transition-transform duration-700 ease-out z-0 delay-75"></div>
+
+                                    {/* Content layer */}
+                                    <div className="relative z-10 flex flex-col h-full justify-center">
+                                        <h3 className="text-xl font-semibold mb-2 text-white drop-shadow-sm transition-colors duration-300">
+                                            {m.title}
+                                        </h3>
+                                        <p className="text-sm text-white/80 leading-relaxed">
+                                            {m.desc}
+                                        </p>
+                                    </div>
+
+                                </Card>
+                            </Link>
+                        ))}
                     </div>
                 </div>
 

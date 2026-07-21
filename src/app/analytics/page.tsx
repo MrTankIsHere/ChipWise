@@ -11,7 +11,7 @@ async function getData() {
 export default async function AnalyticsPage() {
     const processors = await getData();
     return (
-        <div className="p-6">
+        <div className="pt-28 px-6 pb-6">
             <h1 className="text-2xl font-bold mb-4">Analytics</h1>
             <AnalyticsCharts data={processors} />
         </div>

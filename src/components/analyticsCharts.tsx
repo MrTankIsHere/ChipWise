@@ -7,7 +7,7 @@ import {
 
 const COLORS = ["#8884d8", "#82ca9d", "#ffc658", "#ff8042", "#00C49F", "#FFBB28", "#a4de6c", "#d0ed57"];
 
-// dark tooltip so text is readable (default is too light)
+// dark tooltip so text is readable
 const tooltipStyle = { backgroundColor: "#1f2937", color: "#fff", border: "none", borderRadius: 6 };
 
 export default function AnalyticsCharts({ data }: { data: any[] }) {
