@@ -40,7 +40,7 @@ export default function ProcessorFilters({ processors, priceBounds, npuBounds }:
 
                 <div>
                     <label className={labelClass}>Brand</label>
-                    <Select value={brand || ALL} onValueChange={(v) => setBrand(v === ALL ? "" : v)}>
+                    <Select value={brand || ALL} onValueChange={(v) => setBrand(v === ALL ? "" : (v || ""))}>
                         <SelectTrigger className="w-40">
                             <SelectValue placeholder="All Brands">
                                 {brand === "" ? "All Brands" : brand}
@@ -55,7 +55,7 @@ export default function ProcessorFilters({ processors, priceBounds, npuBounds }:
 
                 <div>
                     <label className={labelClass}>Series</label>
-                    <Select value={series || ALL} onValueChange={(v) => setSeries(v === ALL ? "" : v)}>
+                    <Select value={series || ALL} onValueChange={(v) => setSeries(v === ALL ? "" : (v || ""))}>
                         <SelectTrigger className="w-44">
                             <SelectValue placeholder="All Series">
                                 {series === "" ? "All Series" : series}
