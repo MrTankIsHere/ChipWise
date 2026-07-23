@@ -16,12 +16,11 @@ async function getData() {
 }
 
 export default async function LaptopsPage() {
-
     const data = await getData();
 
     return (
-        <div className="pt-28 px-6 pb-6">
-            <h1 className="text-2xl font-bold mb-4">Laptop Explorer</h1>
+        <div className="pt-28 px-6 pb-12">
+            <h1 className="text-3xl font-bold mb-6">Laptop Explorer</h1>
             <LaptopTable data={data} />
         </div>
     );

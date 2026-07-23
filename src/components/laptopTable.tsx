@@ -28,38 +28,59 @@ export default function LaptopTable({ data }: { data: any[] }) {
     });
 
     return (
-        <div>
+        <div className="bg-card border border-border rounded-2xl overflow-hidden">
             <Table>
                 <TableHeader>
-                {table.getHeaderGroups().map((hg) => (
-                    <TableRow key={hg.id}>
-                    {hg.headers.map((h) => (
-                        <TableHead key={h.id} onClick={h.column.getToggleSortingHandler()} className="cursor-pointer">
-                        {flexRender(h.column.columnDef.header, h.getContext())}
-                        {{ asc: " ↑", desc: " ↓" }[h.column.getIsSorted() as string] ?? ""}
-                        </TableHead>
+                    {table.getHeaderGroups().map((hg) => (
+                        <TableRow key={hg.id} className="hover:bg-transparent border-border">
+                            {hg.headers.map((h) => (
+                                <TableHead
+                                    key={h.id}
+                                    onClick={h.column.getToggleSortingHandler()}
+                                    className="cursor-pointer select-none text-xs uppercase tracking-wide text-muted-foreground"
+                                    >
+                                    {flexRender(h.column.columnDef.header, h.getContext())}
+                                    {{ asc: " ↑", desc: " ↓" }[h.column.getIsSorted() as string] ?? ""}
+                                </TableHead>
+                            ))}
+                        </TableRow>
                     ))}
-                    </TableRow>
-                ))}
                 </TableHeader>
                 <TableBody>
-                {table.getRowModel().rows.length === 0 ? (
-                    <TableRow><TableCell colSpan={columns.length} className="text-center py-6 text-muted-foreground">No data found.</TableCell></TableRow>
-                ) : table.getRowModel().rows.map((row) => (
-                    <TableRow key={row.original.laptopId}>
-                    {row.getVisibleCells().map((cell) => (
-                        <TableCell key={cell.id}>
-                        <Link href={`/laptops/${row.original.laptopId}`}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</Link>
-                        </TableCell>
-                    ))}
-                    </TableRow>
-                ))}
+                    {
+                        table.getRowModel().rows.length === 0 ? (
+                                <TableRow>
+                                    <TableCell colSpan={columns.length} className="text-center py-10 text-muted-foreground">
+                                        No data found.
+                                    </TableCell>
+                                </TableRow>
+                            ) : table.getRowModel().rows.map((row) => (
+                                <TableRow key={row.original.laptopId} className="hover:bg-muted/50 border-border">
+                                    {
+                                        row.getVisibleCells().map((cell) => (
+                                            <TableCell key={cell.id} className="p-0">
+                                                <Link href={`/laptops/${row.original.laptopId}`} className="block px-4 py-3">
+                                                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                                                </Link>
+                                            </TableCell>
+                                        ))
+                                    }
+                                </TableRow>
+                        ))
+                    }
                 </TableBody>
             </Table>
-            <div className="flex items-center gap-2 mt-4">
-                <Button variant="outline" size="sm" onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()}>Prev</Button>
-                <span className="text-sm">Page {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}</span>
-                <Button variant="outline" size="sm" onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>Next</Button>
+
+            <div className="flex justify-center items-center gap-4 px-4 py-3 border-t border-border">
+                <Button variant="outline" size="sm" onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()}>
+                    Prev
+                </Button>
+                    <span className="text-sm text-muted-foreground">
+                        Page {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}
+                    </span>
+                <Button variant="outline" size="sm" onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>
+                    Next
+                </Button>
             </div>
         </div>
     );

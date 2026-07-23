@@ -27,10 +27,9 @@ const columns = [
 ];
 
 export default function ProcessorTable({ data }: { data: Processor[] }) {
-
     const [sorting, setSorting] = useState<SortingState>([]);
-
     const { brand, series, priceMin, priceMax, npuMin, npuMax } = useFilterStore();
+
     const filteredData = useMemo(() => {
         return data.filter((p) => {
             if (brand && p.brand !== brand) return false;
@@ -52,47 +51,63 @@ export default function ProcessorTable({ data }: { data: Processor[] }) {
     });
 
     return (
-        <div>
+        <div className="bg-card border border-border rounded-2xl overflow-hidden">
             <Table>
-                <TableHeader>
-                    {table.getHeaderGroups().map((hg) => (
-                        <TableRow key={hg.id}>
-                            {hg.headers.map((h) => (
-                                <TableHead key={h.id} onClick={h.column.getToggleSortingHandler()} className="cursor-pointer">
-                                    {flexRender(h.column.columnDef.header, h.getContext())}
-                                    {{ asc: " ↑", desc: " ↓" }[h.column.getIsSorted() as string] ?? ""}
-                                </TableHead>
-                            ))}
-                        </TableRow>
-                    ))}
-                </TableHeader>
-                <TableBody>
-                    {table.getRowModel().rows.length === 0 ? (
-                        <TableRow>
-                            <TableCell colSpan={columns.length} className="text-center py-6 text-muted-foreground">
-                                No data found matching these filters.
-                            </TableCell>
-                        </TableRow>
-                    ) : (
-                        table.getRowModel().rows.map((row) => (
-                            <TableRow key={row.original.processorId} className="cursor-pointer hover:bg-muted/50">
-                                {row.getVisibleCells().map((cell) => (
-                                    <TableCell key={cell.id}>
-                                    <Link href={`/processors/${row.original.processorId}`} className="block">
+                    <TableHeader>
+                        {
+                            table.getHeaderGroups().map((hg) => (
+                                <TableRow key={hg.id} className="hover:bg-transparent border-border">
+                                {
+                                    hg.headers.map((h) => (
+                                        <TableHead
+                                            key={h.id}
+                                            onClick={h.column.getToggleSortingHandler()}
+                                            className="cursor-pointer select-none text-xs uppercase tracking-wide text-muted-foreground"
+                                            >
+                                            {flexRender(h.column.columnDef.header, h.getContext())}
+                                            {{ asc: " ↑", desc: " ↓" }[h.column.getIsSorted() as string] ?? ""}
+                                        </TableHead>
+                                    ))
+                                }
+                                </TableRow>
+                            ))
+                        }
+                    </TableHeader>
+                    <TableBody>
+                        {
+                            table.getRowModel().rows.length === 0 ? (
+                                <TableRow>
+                                <TableCell colSpan={columns.length} className="text-center py-10 text-muted-foreground">
+                                    No data found matching these filters.
+                                </TableCell>
+                                </TableRow>
+                            ) : (
+                                table.getRowModel().rows.map((row) => (
+                                <TableRow key={row.original.processorId} className="hover:bg-muted/50 border-border">
+                                    {row.getVisibleCells().map((cell) => (
+                                    <TableCell key={cell.id} className="p-0">
+                                        <Link href={`/processors/${row.original.processorId}`} className="block px-4 py-3">
                                         {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                                    </Link>
+                                        </Link>
                                     </TableCell>
-                                ))}
-                            </TableRow>
-                        ))
-                    )}
-                </TableBody>
+                                    ))}
+                                </TableRow>
+                                ))
+                            )
+                        }
+                    </TableBody>
             </Table>
 
-            <div className="flex items-center gap-2 mt-4">
-                <Button variant="outline" size="sm" onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()}>Prev</Button>
-                <span className="text-sm">Page {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}</span>
-                <Button variant="outline" size="sm" onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>Next</Button>
+            <div className="flex justify-center items-center gap-4 px-4 py-3 border-t border-border">
+                <Button variant="outline" size="sm" onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()}>
+                    Prev
+                </Button>
+                <span className="text-sm text-muted-foreground">
+                    Page {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}
+                </span>
+                <Button variant="outline" size="sm" onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>
+                    Next
+                </Button>
             </div>
         </div>
     );
