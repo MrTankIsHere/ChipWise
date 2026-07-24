@@ -77,7 +77,7 @@
     --blur-lg: 40px;
     --radius: 0.75rem;
     --blur: 28px;
-    --glass-bg-nav: linear-gradient(135deg, oklch(0.975 0.018 137.8 / 0.85) 0%, oklch(0.854 0.052 199.3 / 0.6) 100%);
+    --glass-bg-nav: linear-gradient(135deg, oklch(0.975 0.018 137.8 / 0.94) 0%, oklch(0.854 0.052 199.3 / 0.85) 100%);
 }
 
 .dark {
@@ -105,7 +105,7 @@
     --glass-shadow-lg: 0 12px 48px oklch(0 0 0 / 0.45), 0 4px 16px oklch(0 0 0 / 0.3), 0 0 0 1px oklch(0.975 0.018 137.8 / 0.08) inset;
     --glass-shadow-sm: 0 4px 16px oklch(0 0 0 / 0.3), 0 1px 4px oklch(0 0 0 / 0.2), 0 0 0 1px oklch(0.975 0.018 137.8 / 0.05) inset;
     --blur: 28px;
-    --glass-bg-nav: linear-gradient(135deg, oklch(0.328 0.068 257.3 / 0.85) 0%, oklch(0.560 0.078 238.0 / 0.5) 100%);
+    --glass-bg-nav: linear-gradient(135deg, oklch(0.328 0.068 257.3 / 0.94) 0%, oklch(0.560 0.078 238.0 / 0.8) 100%);
 }
 
 @layer base {
@@ -148,5 +148,34 @@
         background: var(--glass-bg-nav);
         border: 1px solid var(--glass-border);
         box-shadow: var(--glass-shadow);
+    }
+    input[type="range"] {
+        -webkit-appearance: none;
+        appearance: none;
+        height: 6px;
+        border-radius: 9999px;
+        background: var(--muted);
+        outline: none;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 18px;
+        height: 18px;
+        border-radius: 9999px;
+        background: var(--primary);
+        border: 3px solid var(--background);
+        box-shadow: 0 0 0 1px var(--primary);
+        cursor: pointer;
+    }
+    input[type="range"]::-moz-range-thumb {
+        width: 18px;
+        height: 18px;
+        border-radius: 9999px;
+        background: var(--primary);
+        border: 3px solid var(--background);
+        box-shadow: 0 0 0 1px var(--primary);
+        cursor: pointer;
+        border: none;
     }
 }

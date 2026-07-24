@@ -146,12 +146,12 @@ export default function ScrollVideoHero({ children }: { children?: React.ReactNo
                             </button>
                         </Link>
                         <Link href="/processors">
-                            <button className="glass-sm text-foreground px-8 py-3 rounded-full font-semibold hover:opacity-90 transition-opacity">
+                            <button className="glass-nav text-foreground px-8 py-3 rounded-full font-semibold hover:opacity-90 transition-opacity">
                                 Just Browse
                             </button>
                         </Link>
                     </div>
-                </div>
+                    </div>
 
                 <div className="h-[50vh] w-full pointer-events-none flex-shrink-0" />
 

@@ -1,6 +1,6 @@
 export default function Footer() {
     return (
-        <footer className="relative pt-20 px-6 pb-12 overflow-hidden">
+        <footer className="relative pt-7 px-6 pb-7 overflow-hidden">
             {/* Dark/Light base overlay to ensure the colors pop correctly */}
             <div className="absolute inset-0 bg-background/80 -z-20"></div>
 

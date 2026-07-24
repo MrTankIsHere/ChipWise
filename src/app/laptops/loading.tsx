@@ -2,13 +2,12 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 export default function Loading() {
     return (
-        <div className="pt-28 px-6 pb-6">
-            <Skeleton className="h-8 w-48 mb-4" />
-            <Skeleton className="h-10 w-full mb-4" />
-            <div className="space-y-2">
+        <div className="pt-28 px-6 pb-12">
+            <Skeleton className="h-9 w-56 mb-6" />
+            <div className="bg-card border border-border rounded-2xl p-4">
                 {
                     Array.from({ length: 10 }).map((_, i) => (
-                        <Skeleton key={i} className="h-10 w-full" />
+                        <Skeleton key={i} className="h-10 w-full mb-2" />
                     ))
                 }
             </div>
