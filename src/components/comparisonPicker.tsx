@@ -48,7 +48,7 @@ export default function ComparisonPicker({ processors }: { processors: Processor
                     slots.map((slot, i) => (
                         <div key={i} className="flex flex-col gap-2 w-40">
 
-                            <Select value={slot.brand || undefined} onValueChange={(v) => updateSlotBrand(i, v || "")}>
+                            <Select value={slot.brand} onValueChange={(v) => updateSlotBrand(i, v ?? "")}>
                                 <SelectTrigger className="rounded-full text-xs h-9">
                                     <SelectValue placeholder={`Brand ${i + 1}`} />
                                 </SelectTrigger>
@@ -57,7 +57,7 @@ export default function ComparisonPicker({ processors }: { processors: Processor
                                 </SelectContent>
                             </Select>
 
-                            <Select value={slot.processorId || undefined} onValueChange={(v) => updateSlotModel(i, v || "")} disabled={!slot.brand} >
+                            <Select value={slot.processorId} onValueChange={(v) => updateSlotModel(i, v ?? "")} disabled={!slot.brand}>
                                 <SelectTrigger className="rounded-full text-xs h-9">
                                     <SelectValue placeholder="Select model" />
                                 </SelectTrigger>

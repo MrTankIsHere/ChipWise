@@ -2,7 +2,8 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
-const TOTAL_FRAMES = 150; // change this to match your actual frame count from step 1
+// change this to match your actual frame count from step 1
+const TOTAL_FRAMES = 240;
 const FRAME_PATH = (i: number) => `/frames/frame-${String(i).padStart(4, "0")}.png`;
 
 export default function ScrollVideoHero({ children }: { children?: React.ReactNode }) {
